@@ -2,17 +2,18 @@
 <html lang="de">
 
 <head>
+  <!-- WICHTIG: <link> für CSS muss NACH <meta charset> stehen,
+       damit Sonderzeichen korrekt dargestellt werden. -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Swiss Taekwondo – UHP Team</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
 
   <!-- ========================================================
-    HEADER
-    Das <header>-Element steht ganz oben auf der Seite.
-    Es enthält das Logo und die Navigation.
+    HEADER – Logo links, Sprachauswahl rechts
   ========================================================= -->
   <header>
     <a href="#">
@@ -24,19 +25,10 @@
   </header>
 
 
-  <!-- ========================================================
-    MAIN
-    Das <main>-Element umschliesst den gesamten Hauptinhalt
-    der Seite. Es gibt pro Seite nur ein <main>.
-  ========================================================= -->
   <main>
 
-
     <!-- ======================================================
-      HERO-SECTION
-      Eine <section> ist ein thematisch zusammengehörender
-      Abschnitt. Hier ist es der grosse Einstiegsbereich
-      (Hero) mit Hintergrundbild, Titel und Button.
+      HERO – Hintergrundbild mit Text und Button darüber
     ======================================================= -->
     <section>
       <img src="hero.jpg" alt="Athletin beim Taekwondo-Wettkampf" />
@@ -47,15 +39,16 @@
 
 
     <!-- ======================================================
-      ABSCHNITT: STARKE ATHLETINNEN
-      Textabschnitt mit Einleitung über das UHP-Team.
+      STARKE ATHLETINNEN
+      data-label = kleines rotes Etikett über dem Titel,
+      wird per CSS mit content: attr(data-label) angezeigt.
     ======================================================= -->
-    <section>
+    <section data-label="UHP Team">
       <h2>Starke Athlet:innen. Bewährte Struktur.</h2>
 
       <p>
         Hinter Taekwondo-Elitesportler:innen stehen internationale
-        Trainingsmethoden und ein System. Wir verbinden zum systemischen
+        Trainingsmethoden und ein System. Wir verbinden systemische
         Trainingsmethoden und ein globales Trainings-Netzwerk mit einer
         schweizerischen Organisationsstruktur.
       </p>
@@ -63,7 +56,7 @@
       <p>
         Das Ziel: Die besten jungen Taekwondo-Athlet:innen der Schweiz zu
         Weltklasseniveau zu führen – in 5 Jahren. Das UHP-Team ist mehr als
-        ein Trainingsprogramm. Es ist ein Versprechen an die Athletinnen der
+        ein Trainingsprogramm. Es ist ein Versprechen an die Athlet:innen der
         Zukunft.
       </p>
 
@@ -80,28 +73,24 @@
       <ul>
         <li>Einheitliche, leistungsgerechte Anforderungen über alle Disziplinen und Alter</li>
         <li>Internationale Trainingseinheiten und Wettkämpfe auf höchstem Niveau</li>
-        <li>Eine klare Fit-Selektion für Athlete:innen bei internationalen Vergleichen</li>
-        <li>Strukturierte Jahrplanung mit klaren Meilensteinen</li>
+        <li>Eine klare Fit-Selektion für Athlet:innen bei internationalen Vergleichen</li>
+        <li>Strukturierte Jahresplanung mit klaren Meilensteinen</li>
       </ul>
 
-      <p>
-        Das Ziel: ein Team. Ein System. Ohne Kompromisse.
-      </p>
+      <p>Das Ziel: ein Team. Ein System. Ohne Kompromisse.</p>
     </section>
 
 
     <!-- ======================================================
-      ABSCHNITT: LEISTUNG UND VERANTWORTUNG
-      Informationsabschnitt mit Grundsätzen.
+      LEISTUNG UND VERANTWORTUNG
     ======================================================= -->
-    <section>
-      <h2>Leistung und Verantwortung. Eine Widerspruch.</h2>
+    <section data-label="Leistung">
+      <h2>Leistung und Verantwortung. Kein Widerspruch.</h2>
 
       <p>
         Swiss Taekwondo investiert auch in unser internes Ressourcen-
         Management-System. Wir fördern und fordern von jedem Athlet:in
-        eine monatliche Leistungsabrechnung ihrer Entwicklung. Ab dem Jahr
-        2025.
+        eine monatliche Leistungsabrechnung ihrer Entwicklung. Ab dem Jahr 2025.
       </p>
 
       <h3>Die Grundsätze:</h3>
@@ -112,42 +101,40 @@
       </ul>
 
       <p>
-        Swiss Taekwondo ist nicht nur gut, denn unser Team besteht aus Talenten
-        mit Hingabe. Es ist bereit für die Weltklasse, denn unser System
-        wurde an internationalen Vorbildern ausgerichtet.
+        Swiss Taekwondo ist nicht nur gut, weil unser Team aus Talenten
+        mit Hingabe besteht. Es ist bereit für die Weltklasse, weil unser
+        System an internationalen Vorbildern ausgerichtet ist.
       </p>
     </section>
 
 
     <!-- ======================================================
-      ABSCHNITT: WERDEN SIE TEIL DES UNTERSCHIEDS (CTA)
-      Call-to-Action-Bereich mit rotem Hintergrund.
-      Ein CTA (Call to Action) fordert Besucher auf, etwas
-      zu tun – hier: das Team finanziell zu unterstützen.
+      CTA – ROTER BEREICH
+      Dieser Bereich hat einen roten Hintergrund (via CSS).
     ======================================================= -->
-    <section>
+    <section data-label="Support">
       <h2>Werden Sie Teil des Unterschieds.</h2>
 
       <p>
-        Das UHP Team braucht dazu – gezielte Supporter. Mit dem UHP-
-        Sponsoring System ermöglichen Sie nicht nur die Karriere von
-        Talenten, sondern aktive Teilnahme an etwas Bleibendem, bis 2029.
+        Das UHP-Team braucht gezielte Supporter. Mit dem UHP-Sponsoring-
+        System ermöglichen Sie nicht nur die Karriere von Talenten, sondern
+        aktive Teilnahme an etwas Bleibendem – bis 2029.
       </p>
 
       <h3>Wirkungen</h3>
       <p>
-        Wenn Sie eine Sponsoring, dann unterstützen Sie die Entwicklung
-        eines Teams.
+        Wenn Sie sponsern, dann unterstützen Sie die Entwicklung
+        eines ganzen Teams.
       </p>
 
-      <h3>Partner & Sponsor werden</h3>
+      <h3>Partner &amp; Sponsor werden</h3>
       <p>
-        Das UHP-Team sucht langfristige Partner für Ihre Finanzierungsstrategie
+        Das UHP-Team sucht langfristige Partner für die Finanzierungsstrategie
         von Talenten.
       </p>
 
-      <!-- Soziale Medien -->
-      <ul>
+      <!-- Social-Media-Links – Klasse "social" für spezifisches CSS -->
+      <ul class="social">
         <li><a href="#">Instagram</a></li>
         <li><a href="#">Facebook</a></li>
       </ul>
@@ -155,8 +142,6 @@
       <a href="#">Jetzt im UHP Team</a>
 
       <h3>Newsletter abonnieren</h3>
-      <!-- Das <form>-Element umschliesst interaktive
-           Eingabefelder, die der Benutzer ausfüllen kann. -->
       <form>
         <label for="email">E-Mail</label>
         <input type="email" id="email" name="email" placeholder="Deine E-Mail-Adresse" />
@@ -166,16 +151,18 @@
 
 
     <!-- ======================================================
-      ABSCHNITT: FÜR ATHLETINNEN
-      Abschnitt, der sich direkt an Sportler:innen richtet.
+      FÜR ATHLETINNEN
     ======================================================= -->
-    <section>
+    <section data-label="Athletinnen">
       <h2>Für Athlet:innen. Endlich ein Anspruch.</h2>
 
       <p>
         Als Athlet:in bekommst du bei Swiss Taekwondo einen klaren Rahmen
         und die Unterstützung, die du wirklich brauchst.
       </p>
+
+      <!-- Platzhalterbild – wird grau angezeigt bis ein echtes Bild hinterlegt ist -->
+      <img src="athletinnen.jpg" alt="Athlet:in beim Training" />
 
       <h3>Dein Anspruch</h3>
       <ul>
@@ -187,11 +174,9 @@
 
 
     <!-- ======================================================
-      ABSCHNITT: FÜR DIE SCHWEIZ STÄRKER
-      Informationsbereich über den gesellschaftlichen
-      Beitrag des UHP-Teams.
+      FÜR DIE SCHWEIZ
     ======================================================= -->
-    <section>
+    <section data-label="Schweiz">
       <h2>Für die Schweiz: stärker durch gelebte Erfahrung.</h2>
 
       <p>
@@ -199,15 +184,17 @@
         endlich einen klaren Rahmen. Das UHP-Team ist mehr als Sport – es
         ist eine Investition in die Zukunft des Schweizer Spitzensports.
       </p>
+
+      <!-- Platzhalterbild -->
+      <img src="schweiz.jpg" alt="Schweizer Taekwondo Team" />
     </section>
 
 
     <!-- ======================================================
-      ABSCHNITT: UNSERE PARTNER & TRÄGER
-      Logos der Partnerorganisationen.
+      PARTNER & TRÄGER
     ======================================================= -->
-    <section>
-      <h2>Unsere Partner & Träger</h2>
+    <section data-label="Partner">
+      <h2>Unsere Partner &amp; Träger</h2>
 
       <ul>
         <li>
@@ -229,14 +216,11 @@
     </section>
 
 
-  </main><!-- Ende <main> -->
+  </main>
 
 
   <!-- ========================================================
     FOOTER
-    Das <footer>-Element steht am Ende der Seite.
-    Es enthält Kontaktinformationen, Links und rechtliche
-    Hinweise.
   ========================================================= -->
   <footer>
     <img src="logo-footer.svg" alt="Swiss Taekwondo Logo" />
