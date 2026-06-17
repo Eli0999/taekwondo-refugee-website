@@ -564,3 +564,170 @@ footer small {
   border-top: 1px solid rgba(255,255,255,0.08);
   padding-top: 16px;
 }
+
+
+/* ════════════════════════════════════════════════════════════
+   TABLET   @media (min-width: 744px) and (max-width: 1279px)
+   ════════════════════════════════════════════════════════════ */
+@media (min-width: 744px) and (max-width: 1279px) {
+
+  :root { --seite: 48px; }
+
+  body {
+    max-width: 760px;
+    font-size: 16px;
+  }
+
+  /* Header */
+  header img { height: 36px; }
+  header nav a { font-size: 12px; }
+
+  /* Hero */
+  main > section:first-child { min-height: 460px; }
+
+  main > section:first-child img { height: 460px; }
+
+  main > section:first-child::before { bottom: 190px; font-size: 11px; }
+
+  main > section:first-child h1 {
+    font-size: 46px;
+    max-width: 540px;
+    bottom: 100px;
+  }
+
+  main > section:first-child p {
+    font-size: 14px;
+    max-width: 460px;
+    bottom: 60px;
+  }
+
+  main > section:first-child a { bottom: 28px; }
+
+  /* Sections allgemein */
+  main > section:not(:first-child) { padding: 52px var(--seite); }
+
+  h2 { font-size: 32px; }
+  h3 { font-size: 14px; }
+  p  { font-size: 15px; max-width: 600px; }
+
+  /* Kennzahlen */
+  .stat-row { grid-template-columns: repeat(4, 1fr); }
+  .stat-box { padding: 20px 16px; }
+  .stat-box .zahl { font-size: 40px; }
+
+  /* Grundsätze */
+  .prinzip-grid { gap: 14px; max-width: 640px; }
+  .prinzip-card { padding: 20px 14px; }
+  .prinzip-card .icon { font-size: 24px; }
+
+  /* Newsletter-Formular inline statt gestapelt */
+  form { flex-direction: row; flex-wrap: wrap; }
+
+  form label { flex: 1 0 100%; }
+
+  form input[type="email"] {
+    flex: 1 1 auto;
+    border-bottom: none;
+    border-right: 1px solid rgba(255,255,255,0.2);
+  }
+
+  form button { flex: 0 0 170px; }
+
+  /* Partner */
+  main > section:last-child ul li { flex: 1 1 160px; }
+  main > section:last-child ul li img { height: 36px; }
+}
+
+
+/* ════════════════════════════════════════════════════════════
+   DESKTOP  @media (min-width: 1280px)
+   ════════════════════════════════════════════════════════════ */
+@media (min-width: 1280px) {
+
+  :root { --seite: 80px; }
+
+  body {
+    max-width: 1600px;
+    font-size: 17px;
+  }
+
+  /* Header */
+  header { padding: 20px var(--seite); }
+  header img { height: 42px; }
+  header nav a { font-size: 12px; }
+
+  /* Hero */
+  main > section:first-child { min-height: 620px; }
+
+  main > section:first-child img { height: 620px; }
+
+  main > section:first-child::before { bottom: 300px; font-size: 13px; }
+
+  main > section:first-child h1 {
+    font-size: 76px;
+    max-width: 920px;
+    bottom: 165px;
+  }
+
+  main > section:first-child p {
+    font-size: 17px;
+    max-width: 580px;
+    bottom: 90px;
+  }
+
+  main > section:first-child a {
+    bottom: 44px;
+    font-size: 13px;
+    padding: 16px 30px;
+  }
+
+  /* Sections allgemein */
+  main > section:not(:first-child) { padding: 88px var(--seite); }
+
+  h2 { font-size: 44px; margin-bottom: 20px; }
+  h3 { font-size: 15px; margin-top: 30px; }
+  p  { font-size: 17px; max-width: 720px; }
+
+  main ul:not(.social) { max-width: 720px; }
+
+  /* Kennzahlen */
+  .stat-row { grid-template-columns: repeat(4, 1fr); margin: 32px 0; }
+  .stat-box { padding: 30px 26px; }
+  .stat-box .zahl { font-size: 54px; }
+  .stat-box .label { font-size: 13px; }
+
+  /* Grundsätze */
+  .prinzip-grid { gap: 20px; max-width: 900px; }
+  .prinzip-card { padding: 30px 18px; }
+  .prinzip-card .icon { font-size: 30px; }
+  .prinzip-card .name { font-size: 15px; }
+
+  /* CTA-Section: Inhalt links, Newsletter-Sidebar rechts */
+  main > section:nth-child(4) {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    column-gap: 72px;
+    align-items: start;
+  }
+
+  main > section:nth-child(4)[data-label]::before {
+    grid-column: 1 / -1;
+    grid-row: 1;
+  }
+
+  main > section:nth-child(4) > *:nth-child(-n+8) { grid-column: 1; }
+  main > section:nth-child(4) > *:nth-child(n+9)  { grid-column: 2; }
+
+  main > section:nth-child(4) h2 { font-size: 50px; max-width: none; }
+  main > section:nth-child(4) p { max-width: none; }
+  main > section:nth-child(4) ul.social { max-width: none; }
+
+  /* Partner */
+  main > section:last-child ul li { flex: 1 1 220px; padding: 30px 18px; }
+  main > section:last-child ul li img { height: 42px; }
+
+  /* Footer */
+  footer { padding: 64px var(--seite) 32px; }
+  .footer-top { margin-bottom: 40px; }
+  footer address { font-size: 14px; }
+}
