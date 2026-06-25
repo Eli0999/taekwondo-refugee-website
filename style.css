@@ -1,733 +1,1296 @@
-@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;1,600&family=Barlow:wght@300;400;500;600&display=swap');
-
+/* ============================================================
+   STYLES.CSS – Swiss UHP Team
+   Reihenfolge: 1. @import  2. :root  3. Reset  4. Styles  5. @media
+   ============================================================ */
+ 
+ 
+/* ============================================================
+   1. GOOGLE FONTS – Inter Schriftart laden
+   @import muss die ERSTE Zeile in der CSS-Datei sein!
+   ============================================================ */
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,600;0,700;0,800;1,400;1,700&display=swap');
+/* ============================================================
+   2. CSS CUSTOM PROPERTIES (:root)
+   Alle Farben, Schriften, Abstände als Variablen.
+   Einmal ändern → gilt überall auf der Seite.
+   Verwendung: color: var(--color-red);
+   ============================================================ */
 :root {
-  --rot:         #C8102E;
-  --rot-dunkel:  #a00d24;
-  --schwarz:     #0d0d0d;
-  --text:        #2a2a2a;
-  --text-mild:   #666;
-  --hell:        #f8f7f5;
-  --rand:        #e8e6e2;
-  --weiss:       #ffffff;
-  --seite:       20px;
+  /* --- Farben --- */
+  --color-red:        #c1002a;   /* Hauptrot */
+  --color-red-dark:   #7d001b;   /* Hover-Rot */
+  --color-black:      #000000;
+  --color-white:      #ffffff;
+  --color-body:       #444444;   /* Normaler Fliesstext */
+  --color-heading:    #111111;   /* Überschriften */
+  --color-label:      #c1002a;   /* Rote Labels */
+  --color-bg-gray:    #f0f0f7;   /* Grauer Sektionshintergrund */
+  --color-bg-dark:    #0f0f0f;   /* Schwarzer Hintergrund (Footer/Formular) */
+  --color-border:     #cccccc;
+  --color-gray-light: #eeeeee;   /* Helle Trennlinien */
+  --color-gray-mid:   #888888;   /* Placeholder-Text */
+  --color-gray-dark:  #444444;   /* Credits-Text */
+  --color-bg-hover:   #fff0f0;   /* Hover-Hintergrund weiss-rot */
+ 
+  /* --- Schrift --- */
+  --font-family:      'Inter', Arial, sans-serif;
+  --font-size-base:   1rem;        /* 16px */
+  --font-size-sm:     0.875rem;    /* 14px */
+  --font-size-h1:     2.5rem;      /* 40px */
+  --font-size-h2:     2rem;        /* 32px */
+  --font-size-h3:     1.125rem;    /* 18px */
+  --font-weight-reg:  400;
+  --font-weight-semi: 600;
+  --font-weight-bold: 700;
+  --font-weight-xbold:800;
+  --line-height-base: 1.65;
+ 
+  /* --- Abstände --- */
+  --spacing-xs:  0.5rem;    /*  8px */
+  --spacing-sm:  1rem;      /* 16px */
+  --spacing-md:  1.5rem;    /* 24px */
+  --spacing-lg:  2.5rem;    /* 40px */
+  --spacing-xl:  4rem;      /* 64px */
+ 
+  /* --- Layout --- */
+  --container-width: 74rem;    /* Max-Breite des Inhalts */
+  --header-height:   4.5rem;
+  --border-radius:   4px;
+  --transition:      0.2s ease;
 }
-
+ 
+ 
+/* ============================================================
+   3. CSS RESET
+   Entfernt Browser-Standardstile damit die Seite überall
+   gleich aussieht (Chrome, Firefox, Safari, Edge).
+   ============================================================ */
 *, *::before, *::after {
   box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+  /* Breite = Inhalt + padding + border (nie mehr!) */
 }
-
+ 
 body {
-  font-family: 'barlow', sans-serif;
-  font-size: 15px;
-  line-height: 1.65;
-  color: var(--text);
-  background: var(--weiss);
-  max-width: 480px;
-  margin: 0 auto;
+  margin: 0;
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  color: var(--color-body);
+  line-height: var(--line-height-base);
+  background-color: var(--color-white);
 }
-
+ 
 img {
   max-width: 100%;
   height: auto;
   display: block;
+  /* Bilder sind nie breiter als ihr Container */
 }
-
-a { text-decoration: none; color: inherit; }
-ul { list-style: none; }
-
-
-/* ── HEADER ─────────────────────────────────────────────── */
-header {
+ 
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+ 
+a {
+  color: inherit;
+  text-decoration: none;
+}
+ 
+h1, h2, h3, h4 {
+  margin: 0;
+  color: var(--color-heading);
+  line-height: 1.15;
+}
+ 
+p {
+  margin: 0 0 var(--spacing-sm) 0;
+}
+ 
+p:last-child {
+  margin-bottom: 0;
+}
+ 
+ 
+/* ============================================================
+   4. GLOBALE WIEDERVERWENDBARE STILE
+   ============================================================ */
+ 
+/* --- Container: zentriert den Inhalt mit max-width --- */
+.container {
+  width: 100%;
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+}
+ 
+/* --- Buttons --- */
+.btn {
+  display: inline-block;
+  padding: 0.75rem 1.75rem;
+  border-radius: var(--border-radius);
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-bold);
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: background-color var(--transition), transform var(--transition);
+  text-decoration: none;
+}
+ 
+/* Roter Button */
+.btn--primary {
+  background-color: var(--color-red);
+  color: var(--color-white);
+}
+ 
+.btn--primary:hover {
+  background-color: var(--color-red-dark);
+  transform: translateY(-2px);
+}
+ 
+/* Weisser Outline-Button (im roten Bereich) */
+.btn--outline {
+  background-color: var(--color-white);
+  color: var(--color-red);
+  border-color: var(--color-red);
+}
+ 
+.btn--outline:hover {
+  background-color: var(--color-bg-hover);
+}
+ 
+/* --- Sektion-Label (z.B. "AUSGANGSLAGE") --- */
+.section-label {
+  display: inline-block;
+  font-size: 0.6875rem;    /* 11px */
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-label);
+  border-top: 2px solid var(--color-label);
+  padding-top: 0.625rem;
+  margin-bottom: var(--spacing-sm);
+}
+ 
+/* Label in rotem/dunklem Bereich */
+.section-label--white {
+  color: var(--color-white);
+  border-top-color: rgba(255,255,255,0.5);
+}
+ 
+/* --- Kursiver Einleitungstext --- */
+.intro-text {
+  font-size: var(--font-size-base);
+  font-style: italic;
+  font-weight: var(--font-weight-bold);
+  line-height: 1.75;
+  color: var(--color-heading);
+  margin-bottom: var(--spacing-sm);
+}
+ 
+/* Intro-Text in dunklem Hintergrund */
+.intro-text--white {
+  color: var(--color-white);
+}
+ 
+/* --- Normaler Fliesstext --- */
+.body-text {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-reg);
+  line-height: var(--line-height-base);
+  color: var(--color-body);
+}
+ 
+.body-text--white {
+  color: rgba(255,255,255,0.85);
+}
+ 
+/* --- Infobox (graue Box) --- */
+.infobox {
+  background-color: #f0f0f0;
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+  padding: var(--spacing-md);
+  margin-top: var(--spacing-lg);
+}
+ 
+.infobox h3 {
+  font-size: var(--font-size-h3);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-heading);
+  margin-bottom: var(--spacing-sm);
+}
+ 
+/* Liste mit Bulletpoints */
+.infobox ul {
+  list-style: disc;
+  padding-left: var(--spacing-md);
+  margin-bottom: var(--spacing-sm);
+}
+ 
+.infobox ul li {
+  font-size: var(--font-size-sm);
+  color: var(--color-body);
+  line-height: 1.6;
+  margin-bottom: var(--spacing-xs);
+}
+ 
+/* Fazit-Text in Infobox */
+.infobox .fazit {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  font-style: italic;
+  color: var(--color-heading);
+  padding-top: var(--spacing-sm);
+  border-top: 1px solid var(--color-border);
+  margin-bottom: 0;
+}
+ 
+/* --- Zitat-Box --- */
+.quote-box {
+  background-color: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+  padding: var(--spacing-md);
+  margin-top: var(--spacing-lg);
+  font-size: var(--font-size-sm);
+  line-height: 1.7;
+  color: var(--color-body);
+}
+ 
+ 
+/* ============================================================
+   5. HEADER & NAVIGATION
+   ============================================================ */
+.site-header {
   position: sticky;
+  /* Bleibt beim Scrollen oben kleben */
   top: 0;
   z-index: 100;
-  background: var(--weiss);
+  background-color: var(--color-white);
+  height: var(--header-height);
+  border-bottom: 1px solid var(--color-gray-light);
+  display: flex;
+  align-items: center;
+}
+ 
+.site-header .container {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 12px var(--seite);
-  border-bottom: 1px solid var(--rand);
-}
-
-header img { height: 32px; width: auto; }
-
-header nav a {
-  font-size: 11px;
-  font-weight: 600;
-  color: var(--text);
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  border-bottom: 2px solid transparent;
-  padding-bottom: 1px;
-  transition: border-color 0.2s;
-}
-
-header nav a:hover { border-color: var(--rot); }
-
-
-/* ── HERO ────────────────────────────────────────────────── */
-main > section:first-child {
-  position: relative;
-  min-height: 380px;
-  overflow: hidden;
-  background: var(--schwarz);
-}
-
-main > section:first-child img {
   width: 100%;
-  height: 380px;
-  object-fit: cover;
-  object-position: center top;
-  opacity: 0.75;
 }
-
-main > section:first-child::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    160deg,
-    rgba(0,0,0,0.05) 0%,
-    rgba(0,0,0,0.72) 100%
-  );
-  pointer-events: none;
+ 
+/* Logo */
+.header-logo img {
+  height: 60px;
+  width: 80px;
+  
 }
-
-main > section:first-child h1,
-main > section:first-child p,
-main > section:first-child a {
-  position: absolute;
-  z-index: 2;
-  color: var(--weiss);
-  left: var(--seite);
-  right: var(--seite);
+ 
+/* Navigation Links */
+.site-nav {
+  display: none;
+  /* Mobile: versteckt. Desktop: sichtbar via @media */
 }
-
-/* Kleines rotes Label über dem Titel */
-main > section:first-child::before {
-  content: 'Swiss Taekwondo';
-  position: absolute;
-  z-index: 3;
-  left: var(--seite);
-  bottom: 150px;
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--rot);
+ 
+.site-nav ul {
+  display: flex;
+  gap: var(--spacing-lg);
+  align-items: center;
+} 
+ 
+.site-nav a {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semi);
+  color: var(--color-heading);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+ 
+.site-nav a:hover {
+  color: var(--color-red);
+}
+ 
+/* Externe Links (Swiss Taekwondo, Taekwondo Bern) */
+.site-nav a.nav-external {
+  color: var(--color-red);
+}
+ 
+/* Rechte Seite: externe Links + Sprache + Hamburger */
+.header-tools {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: var(--spacing-sm);
+  margin-left: auto;
 }
-
-main > section:first-child h1 {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 36px;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.01em;
-  line-height: 1.0;
-  bottom: 80px;
-}
-
-main > section:first-child p {
-  font-size: 13px;
-  font-weight: 300;
-  bottom: 50px;
-  opacity: 0.85;
-  letter-spacing: 0.02em;
-}
-
-main > section:first-child a {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: var(--rot);
-  color: var(--weiss);
-  font-size: 11px;
-  font-weight: 600;
-  padding: 10px 18px;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  bottom: 24px;
-  left: var(--seite);
-  right: auto;
-  transition: background 0.2s;
-}
-
-main > section:first-child a::after { content: '→'; }
-main > section:first-child a:hover { background: var(--rot-dunkel); }
-
-
-/* ── SECTIONS ALLGEMEIN ─────────────────────────────────── */
-main > section:not(:first-child) {
-  padding: 36px var(--seite);
-  border-bottom: 1px solid var(--rand);
-}
-
-/* Rotes Eyebrow-Label */
-main > section:not(:first-child)[data-label]::before {
-  content: attr(data-label);
+ 
+/* Sprache */
+.nav-sprache {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semi);
+  color: var(--color-heading);
+  text-decoration: none;
   display: flex;
   align-items: center;
-  gap: 8px;
-  font-size: 10px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.16em;
-  color: var(--rot);
-  margin-bottom: 10px;
+  gap: 4px;
 }
-
-main > section:not(:first-child)[data-label]::before {
-  content: '— ' attr(data-label);
-}
-
-
-/* ── TYPOGRAFIE ──────────────────────────────────────────── */
-h2 {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 28px;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.01em;
-  color: var(--schwarz);
-  line-height: 1.05;
-  margin-bottom: 14px;
-}
-
-h3 {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 13px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--rot);
-  margin-top: 22px;
-  margin-bottom: 8px;
-}
-
-p {
-  margin-bottom: 12px;
-  font-size: 14px;
-  line-height: 1.7;
-  color: var(--text);
-  font-weight: 400;
-}
-
-
-/* ── LISTEN ──────────────────────────────────────────────── */
-main ul { margin: 10px 0 14px; }
-
-main ul li {
-  font-size: 13px;
-  padding: 9px 0 9px 18px;
-  position: relative;
-  border-bottom: 1px solid var(--rand);
-  line-height: 1.5;
-  color: var(--text);
-}
-
-main ul li:last-child { border-bottom: none; }
-
-main ul li::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 16px;
-  width: 6px;
-  height: 6px;
-  background: var(--rot);
-}
-
-
-/* ── ZAHLEN-BADGE (neu) ──────────────────────────────────── */
-.stat-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1px;
-  background: var(--rand);
-  border: 1px solid var(--rand);
-  margin: 20px 0;
-}
-
-.stat-box {
-  background: var(--weiss);
-  padding: 16px 14px;
-}
-
-.stat-box .zahl {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 36px;
-  font-weight: 800;
-  color: var(--schwarz);
-  line-height: 1;
-}
-
-.stat-box .label {
-  font-size: 11px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--text-mild);
-  margin-top: 4px;
-}
-
-
-/* ── GRAUE BILD-SECTION ──────────────────────────────────── */
-main > section:nth-child(5) img,
-main > section:nth-child(6) img {
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
-  background: #d0cec8;
-  margin: 16px 0;
-}
-
-
-/* ── GRUNDSÄTZE (Karten) ─────────────────────────────────── */
-.prinzip-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 8px;
-  margin: 12px 0 16px;
-}
-
-.prinzip-card {
-  border: 1px solid var(--rand);
-  padding: 14px 10px;
-  text-align: center;
-}
-
-.prinzip-card .icon {
-  font-size: 20px;
-  margin-bottom: 6px;
-}
-
-.prinzip-card .name {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 13px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--schwarz);
-}
-
-
-/* ── CTA-SECTION (rot) ───────────────────────────────────── */
-main > section:nth-child(4) {
-  background: var(--schwarz);
-  color: var(--weiss);
-  border-bottom: none;
-  position: relative;
-  overflow: hidden;
-}
-
-/* Dezenter roter Akzent-Strich */
-main > section:nth-child(4)::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 3px;
-  height: 100%;
-  background: var(--rot);
-}
-
-main > section:nth-child(4)[data-label]::before {
-  color: rgba(255,255,255,0.35);
-}
-
-main > section:nth-child(4) h2 {
-  color: var(--weiss);
-  font-size: 30px;
-}
-
-main > section:nth-child(4) h3 {
-  color: rgba(255,255,255,0.5);
-  margin-top: 24px;
-}
-
-main > section:nth-child(4) p {
-  color: rgba(255,255,255,0.75);
-  font-size: 13px;
-}
-
-main > section:nth-child(4) ul li {
-  color: rgba(255,255,255,0.8);
-  border-bottom-color: rgba(255,255,255,0.12);
-}
-
-main > section:nth-child(4) ul li::before {
-  background: var(--rot);
-}
-
-/* Social-Icons */
-main > section:nth-child(4) ul.social {
-  display: flex;
-  gap: 10px;
-  margin: 16px 0 20px;
-}
-
-main > section:nth-child(4) ul.social li {
-  border-bottom: none;
-  padding: 0;
-}
-
-main > section:nth-child(4) ul.social li::before { display: none; }
-
-main > section:nth-child(4) ul.social li a {
-  display: inline-block;
-  border: 1px solid rgba(255,255,255,0.25);
-  color: var(--weiss);
-  font-size: 11px;
-  font-weight: 600;
-  font-family: 'Barlow Condensed', sans-serif;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  padding: 7px 14px;
-  transition: border-color 0.2s, background 0.2s;
-}
-
-main > section:nth-child(4) ul.social li a:hover {
-  border-color: var(--rot);
-  background: var(--rot);
-}
-
-/* Roter CTA-Button */
-main > section:nth-child(4) > a {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  background: var(--rot);
-  color: var(--weiss);
-  font-size: 12px;
-  font-weight: 600;
-  font-family: 'Barlow', sans-serif;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  padding: 14px 20px;
-  margin: 20px 0;
-  transition: background 0.2s;
-}
-
-main > section:nth-child(4) > a::after { content: '→'; }
-main > section:nth-child(4) > a:hover { background: var(--rot-dunkel); }
-
-
-/* ── FORMULAR ────────────────────────────────────────────── */
-form {
+ 
+/* Hamburger-Menü (Mobile) */
+.nav-toggle {
   display: flex;
   flex-direction: column;
-  gap: 0;
-  margin-top: 14px;
-  border: 1px solid rgba(255,255,255,0.2);
-}
-
-form label {
-  font-size: 10px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: rgba(255,255,255,0.5);
-  padding: 10px 12px 0;
-  background: rgba(255,255,255,0.05);
-}
-
-form input[type="email"] {
-  padding: 8px 12px 10px;
-  font-size: 13px;
-  font-family: 'Barlow', sans-serif;
-  border: none;
-  border-bottom: 1px solid rgba(255,255,255,0.2);
-  background: rgba(255,255,255,0.05);
-  color: var(--weiss);
-  outline: none;
-}
-
-form input[type="email"]::placeholder { color: rgba(255,255,255,0.3); }
-form input[type="email"]:focus { background: rgba(255,255,255,0.1); }
-
-form button {
-  padding: 12px;
-  background: var(--rot);
-  color: var(--weiss);
-  font-size: 11px;
-  font-weight: 700;
-  font-family: 'Barlow', sans-serif;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  border: none;
+  gap: 5px;
   cursor: pointer;
-  transition: background 0.2s;
+  background: none;
+  border: none;
+  padding: 4px;
+}
+ 
+.nav-toggle span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background-color: var(--color-red);
+  border-radius: 2px;
+  transition: background-color var(--transition);
 }
 
-form button:hover { background: var(--rot-dunkel); }
-
-
-/* ── PARTNER ──────────────────────────────────────────────── */
-main > section:last-child { background: var(--hell); }
-
-main > section:last-child ul {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0;
-  align-items: stretch;
-  margin: 0;
-  border: 1px solid var(--rand);
-}
-
-main > section:last-child ul li {
-  border-bottom: none;
-  padding: 0;
-  flex: 1 1 120px;
-  border-right: 1px solid var(--rand);
+.site-nav {
+  margin-right: 20px;
+}.site-header .container {
   display: flex;
   align-items: center;
+}
+
+.header-logo {
+  margin-right: 100px;
+}
+
+.site-nav {
+  flex: 1;
+}
+
+.header-tools {
+  margin-left: 20px;
+}
+ 
+ 
+/* ============================================================
+   6. HERO-BEREICH
+   Desktop: zwei Spalten (Text links, Bild rechts)
+   Mobile: Bild als Hintergrund
+   ============================================================ */
+.hero {
+  background-color: var(--color-black);
+  min-height: 80vh;
+  display: flex;
+  align-items: stretch;
+}
+ 
+.hero__inner {
+  display: flex;
+  width: 100%;
+}
+ 
+/* Text-Seite (linke Hälfte Desktop) */
+.hero__content {
+  display: flex;
+  flex-direction: column;
   justify-content: center;
-  padding: 18px 12px;
+  padding: var(--spacing-xl) var(--spacing-lg);
+  flex: 1;
+  background-color: var(--color-black);
 }
-
-main > section:last-child ul li:last-child { border-right: none; }
-main > section:last-child ul li::before { display: none; }
-
-main > section:last-child ul li img {
-  height: 32px;
-  width: auto;
-  opacity: 0.65;
-  filter: grayscale(1);
-  transition: opacity 0.2s, filter 0.2s;
+ 
+/* Label "SWISS TAEKWONDO REFUGEE TEAM" */
+.hero__label {
+  display: inline-block;
+  font-size: 0.6875rem;
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-white);
+  border-top: 2px solid rgba(255,255,255,0.5);
+  padding-top: 0.625rem;
+  margin-bottom: var(--spacing-md);
 }
-
-main > section:last-child ul li:hover img {
-  opacity: 1;
-  filter: none;
+ 
+/* H1 Haupttitel */
+.hero__content h1 {
+  font-size: 2.25rem;
+  font-weight: var(--font-weight-xbold);
+  color: var(--color-white);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: var(--spacing-md);
 }
-
-
-/* ── FOOTER ──────────────────────────────────────────────── */
-footer {
-  background: var(--schwarz);
-  color: rgba(255,255,255,0.55);
-  padding: 36px var(--seite) 20px;
+ 
+/* Slogan */
+.hero__slogan {
+  font-size: var(--font-size-base);
+  color: rgba(255,255,255,0.85);
+  line-height: 1.65;
+  margin-bottom: var(--spacing-lg);
 }
-
-.footer-top {
+ 
+/* Bild-Seite (rechte Hälfte Desktop) */
+.hero__image-wrap {
+  flex: 1;
+  overflow: hidden;
+  display: none;
+  /* Mobile: versteckt. Desktop: sichtbar */
+}
+ 
+.hero__image-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+ 
+ 
+/* ============================================================
+   7. SEKTIONEN – Grundstil
+   ============================================================ */
+.section {
+  padding: var(--spacing-lg) 0;
+}
+ 
+/* Grauer Hintergrund */
+.section--gray {
+  background-color: var(--color-bg-gray);
+}
+ 
+/* Roter Hintergrund */
+.section--red {
+  background-color: var(--color-red);
+}
+ 
+/* Schwarzer Hintergrund */
+.section--dark {
+  background-color: var(--color-bg-dark);
+}
+ 
+/* Zweispaltige Layout (Text links + rechts) */
+.section__two-col {
+  display: flex;
+  flex-direction: column;
+  /* Mobile: untereinander */
+  gap: var(--spacing-lg);
+}
+ 
+.section__col {
+  flex: 1;
+}
+ 
+ 
+/* ============================================================
+   8. AUSGANGSLAGE & ZIEL
+   ============================================================ */
+.section-ausgangslage h2,
+.section-ziel h2,
+.section-ethik h2 {
+  font-size: 1.75rem;
+  font-weight: var(--font-weight-bold);
+  color: var(--color-heading);
+  margin-bottom: var(--spacing-sm);
+}
+ 
+/* Ziel: fett + normal gemischt */
+.section-ziel h2 em {
+  font-style: normal;
+  font-weight: var(--font-weight-xbold);
+}
+ 
+/* Bild im Ziel-Bereich */
+.ziel-image {
+  max-width: 220px;
+  margin: var(--spacing-md) auto 0;
+}
+ 
+ 
+/* ============================================================
+   9. ETHIK & GRUNDSÄTZE
+   ============================================================ */
+.section-ethik h2 {
+  font-size: 1.875rem;
+}
+ 
+.section-ethik h2 strong {
+  font-weight: var(--font-weight-xbold);
+}
+ 
+ 
+/* ============================================================
+   10. NEWSLETTER & ENGAGEMENT (roter Bereich)
+   ============================================================ */
+.section--red .section-label {
+  color: var(--color-white);
+  border-top-color: rgba(255,255,255,0.5);
+}
+ 
+.section--red h2 {
+  font-size: 2rem;
+  font-weight: var(--font-weight-xbold);
+  color: var(--color-white);
+  line-height: 1.15;
+  margin-bottom: var(--spacing-md);
+}
+ 
+/* Drei Boxen: Weitersagen, Partner, Newsletter */
+.engagement-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  /* Mobile: eine Spalte */
+  gap: var(--spacing-sm);
+  margin-top: var(--spacing-lg);
+}
+ 
+/* Einzelne weisse Box */
+.engagement-card {
+  background-color: rgba(255,255,255,0.12);
+  border-radius: var(--border-radius);
+  padding: var(--spacing-md);
+}
+ 
+.engagement-card h3 {
+  font-size: var(--font-size-h3);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-white);
+  margin-bottom: var(--spacing-xs);
+}
+ 
+.engagement-card p {
+  font-size: var(--font-size-sm);
+  color: rgba(255,255,255,0.85);
+  line-height: 1.6;
+  margin-bottom: var(--spacing-sm);
+}
+ 
+/* Social Icons */
+.social-icons {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  margin-top: var(--spacing-sm);
+}
+ 
+.social-icons a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  background-color: rgba(255,255,255,0.15);
+  border-radius: 50%;
+  color: var(--color-white);
+  font-size: 1.25rem;
+  transition: background-color var(--transition);
+}
+ 
+.social-icons a:hover {
+  background-color: rgba(255,255,255,0.30);
+}
+ 
+/* Newsletter Email-Input */
+.newsletter-input {
+  width: 100%;
+  padding: 0.75rem var(--spacing-sm);
+  border: 1px solid rgba(255,255,255,0.4);
+  border-radius: var(--border-radius);
+  background-color: rgba(255,255,255,0.15);
+  color: var(--color-white);
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  margin-bottom: var(--spacing-sm);
+}
+ 
+.newsletter-input::placeholder {
+  color: rgba(255,255,255,0.6);
+}
+ 
+.newsletter-input:focus {
+  outline: 2px solid var(--color-white);
+  background-color: rgba(255,255,255,0.20);
+}
+ 
+/* Checkbox-Zeile */
+.cb-zeile {
   display: flex;
   align-items: flex-start;
-  justify-content: space-between;
-  margin-bottom: 28px;
-  padding-bottom: 24px;
-  border-bottom: 1px solid rgba(255,255,255,0.1);
+  gap: var(--spacing-xs);
+  font-size: var(--font-size-sm);
+  color: rgba(255,255,255,0.80);
+  line-height: 1.5;
+  margin-top: var(--spacing-xs);
 }
-
-footer img {
-  height: 28px;
-  width: auto;
-  filter: brightness(0) invert(1);
-  opacity: 0.8;
+ 
+.cb-zeile input[type="checkbox"] {
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
+  margin-top: 2px;
+  accent-color: var(--color-white);
 }
-
-footer address {
-  font-style: normal;
-  font-size: 12px;
-  line-height: 2;
-  color: rgba(255,255,255,0.55);
+ 
+ 
+/* ============================================================
+   11. BENEFITS FÜR ATHLETINNEN
+   ============================================================ */
+.section-benefits h2 {
+  font-size: 1.75rem;
+  font-weight: var(--font-weight-reg);
+  color: var(--color-heading);
+  margin-bottom: var(--spacing-md);
 }
-
-footer address a { color: rgba(255,255,255,0.55); transition: color 0.15s; }
-footer address a:hover { color: var(--weiss); }
-
-footer nav {
-  display: flex;
-  gap: 16px;
-  margin-bottom: 20px;
+ 
+.section-benefits h2 strong {
+  font-weight: var(--font-weight-xbold);
 }
-
-footer nav a {
-  font-size: 10px;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: rgba(255,255,255,0.4);
-  transition: color 0.15s;
+ 
+/* Team-Karten: 1 Spalte Mobile → 3 Spalten Desktop */
+.team-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-lg);
 }
-
-footer nav a:hover { color: rgba(255,255,255,0.8); }
-
-footer small {
+ 
+/* Einzelne Karte */
+.team-card {
+  background-color: var(--color-white);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  border-top: 3px solid var(--color-red);
+  transition: box-shadow var(--transition), transform var(--transition);
+}
+ 
+.team-card:hover {
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  transform: translateY(-4px);
+}
+ 
+.team-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  object-position: top;
+  background-color: var(--color-border);
+}
+ 
+.team-card__content {
+  padding: var(--spacing-sm) var(--spacing-md) var(--spacing-md);
+}
+ 
+/* Rotes "TEAM" Label */
+.team-card__label {
   display: block;
-  font-size: 10px;
-  color: rgba(255,255,255,0.25);
-  border-top: 1px solid rgba(255,255,255,0.08);
-  padding-top: 16px;
+  font-size: 0.6875rem;
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-red);
+  border-bottom: 2px solid var(--color-red);
+  padding-bottom: 4px;
+  margin-bottom: var(--spacing-xs);
+  width: fit-content;
 }
-
-
-/* ════════════════════════════════════════════════════════════
-   TABLET   @media (min-width: 744px) and (max-width: 1279px)
-   ════════════════════════════════════════════════════════════ */
+ 
+.team-card__info {
+  font-size: var(--font-size-sm);
+  color: #888888;
+  margin-bottom: var(--spacing-xs);
+}
+ 
+.team-card__quote {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-heading);
+  line-height: 1.5;
+  margin-bottom: 0;
+}
+ 
+ 
+/* ============================================================
+   12. FÜR DIE SCHWEIZ
+   ============================================================ */
+.section-schweiz h2 {
+  font-size: 2rem;
+  font-weight: var(--font-weight-reg);
+  color: var(--color-heading);
+  line-height: 1.15;
+}
+ 
+.section-schweiz h2 strong {
+  font-weight: var(--font-weight-xbold);
+}
+ 
+ 
+/* ============================================================
+   13. PARTNER & TRÄGER (roter Bereich)
+   ============================================================ */
+.section--red h2 {
+  font-size: 2rem;
+  color: var(--color-white);
+  font-weight: var(--font-weight-xbold);
+  margin-bottom: var(--spacing-lg);
+}
+ 
+/* Partner-Karten: 1 Spalte Mobile → 3 Spalten Desktop */
+.partner-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-sm);
+}
+ 
+/* Einzelne Partner-Karte */
+.partner-card {
+  background-color: rgba(255,255,255,0.12);
+  border-radius: var(--border-radius);
+  padding: var(--spacing-sm) var(--spacing-md);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  transition: background-color var(--transition);
+}
+ 
+.partner-card:hover {
+  background-color: rgba(73, 70, 70, 0.139);
+}
+ 
+.partner-card img {
+  width: 56px;
+  height: 56px;
+  object-fit: contain;
+  flex-shrink: 0;
+  background-color: var(--color-white);
+  border-radius: var(--border-radius);
+  padding: 4px;
+}
+ 
+.partner-card__info {
+  flex: 1;
+}
+ 
+.partner-card__url {
+  font-size: var(--font-size-sm);
+  color: rgba(255,255,255,0.65);
+  display: block;
+  margin-bottom: 2px;
+}
+ 
+.partner-card h3 {
+  font-size: var(--font-size-h3);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-white);
+  margin-bottom: 3px;
+}
+ 
+.partner-card p {
+  font-size: var(--font-size-sm);
+  color: rgba(255,255,255,0.75);
+  line-height: 1.4;
+  margin: 0;
+}
+ 
+ 
+/* ============================================================
+   14. KONTAKTFORMULAR (schwarzer Bereich)
+   ============================================================ */
+.section--dark {
+  background-color: var(--color-bg-dark);
+  padding: var(--spacing-xl) 0;
+}
+ 
+.contact-layout {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xl);
+}
+ 
+/* Linke Seite: Logo */
+.contact-logo {
+  text-align: center;
+}
+ 
+.contact-logo img {
+  height: 100px;
+  width: auto;
+  margin: 0 auto var(--spacing-sm);
+}
+ 
+.contact-logo p {
+  font-size: var(--font-size-sm);
+  color: #777777;
+}
+ 
+/* Rechte Seite: Formular */
+.contact-form label {
+  display: block;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semi);
+  color: var(--color-white);
+  margin-bottom: 6px;
+  margin-top: var(--spacing-md);
+}
+ 
+.contact-form label:first-of-type {
+  margin-top: 0;
+}
+ 
+/* Alle Eingabefelder */
+.contact-form input[type="text"],
+.contact-form input[type="email"] {
+  width: 100%;
+  padding: 0.75rem var(--spacing-sm);
+  background-color: var(--color-white);
+  border: none;
+  border-radius: var(--border-radius);
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  color: #888888;
+}
+ 
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: 2px solid var(--color-red);
+  color: var(--color-heading);
+}
+ 
+/* Mehrzeiliges Textfeld */
+.contact-form textarea {
+  width: 100%;
+  padding: 0.75rem var(--spacing-sm);
+  background-color: var(--color-white);
+  border: none;
+  border-radius: var(--border-radius);
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  color: #888888;
+  min-height: 140px;
+  resize: vertical;
+}
+ 
+/* Formular-Reihe (Desktop: zwei Felder nebeneinander) */
+.form-row {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+ 
+/* Checkbox im Formular */
+.contact-form .cb-zeile {
+  color: #aaaaaa;
+  margin-top: var(--spacing-sm);
+}
+ 
+.contact-form .cb-zeile input[type="checkbox"] {
+  accent-color: var(--color-red);
+}
+ 
+/* Senden-Button */
+.btn--submit {
+  display: block;
+  width: 100%;
+  background-color: var(--color-red);
+  color: var(--color-white);
+  border: none;
+  border-radius: var(--border-radius);
+  padding: 1rem;
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-bold);
+  cursor: pointer;
+  margin-top: var(--spacing-md);
+  transition: background-color var(--transition);
+}
+ 
+.btn--submit:hover {
+  background-color: var(--color-red-dark);
+}
+ 
+ 
+/* ============================================================
+   15. FOOTER
+   ============================================================ */
+.site-footer {
+  background-color: var(--color-bg-dark);
+  border-top: 1px solid #222222;
+  padding: var(--spacing-md) 0;
+}
+ 
+.footer-inner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  align-items: flex-start;
+}
+ 
+.footer-links {
+  display: flex;
+  gap: var(--spacing-md);
+  flex-wrap: wrap;
+}
+ 
+.footer-links a {
+  font-size: var(--font-size-sm);
+  color: #aaaaaa;
+  text-decoration: none;
+  transition: color var(--transition);
+}
+ 
+.footer-links a:hover {
+  color: var(--color-white);
+}
+ 
+.footer-copy {
+  font-size: var(--font-size-sm);
+  color: #555555;
+}
+ 
+.footer-credits {
+  font-size: 0.75rem;
+  color: #444444;
+  line-height: 1.6;
+}
+ 
+ 
+/* ============================================================
+   RESPONSIVE DESIGN
+   Strategie: Mobile First
+   → Grundstile = Mobile (kein @media)
+   → Tablet ab 744px
+   → Desktop ab 1280px
+   ============================================================ */
+ 
+ 
+/* ===========================================
+   TABLET – 744px bis 1279px
+   Was sich auf Tablet ändert (verglichen mit Mobile):
+   - Navigation sichtbar (kein Hamburger)
+   - Hero: Vollbild mit dunklem Overlay, Text unten zentriert
+   - Sektionen: IMMER noch einspaltig (nicht zweispaltig!)
+   - Team-Karten: 2 Spalten
+   - Partner-Karten: 2 Spalten
+   - Engagement-Grid: 2 Spalten oben + 1 unten (Newsletter)
+   - Formular: Vorname+Nachname links, Textarea rechts
+   =========================================== */
 @media (min-width: 744px) and (max-width: 1279px) {
-
-  :root { --seite: 48px; }
-
-  body {
-    max-width: 760px;
-    font-size: 16px;
+ 
+  /* --- Navigation --- */
+  /* Nav-Links sichtbar, Hamburger-Button versteckt */
+  .site-nav {
+    display: flex;
+    align-items: center;
   }
-
-  /* Header */
-  header img { height: 36px; }
-  header nav a { font-size: 12px; }
-
-  /* Hero */
-  main > section:first-child { min-height: 460px; }
-
-  main > section:first-child img { height: 460px; }
-
-  main > section:first-child::before { bottom: 190px; font-size: 11px; }
-
-  main > section:first-child h1 {
-    font-size: 46px;
-    max-width: 540px;
-    bottom: 100px;
+ 
+  .nav-toggle {
+    display: none;
+    /*
+      display: none = Element verschwindet komplett.
+      Kein Platz wird reserviert.
+    */
   }
-
-  main > section:first-child p {
-    font-size: 14px;
-    max-width: 460px;
-    bottom: 60px;
+ 
+  /* --- Hero: Vollbild mit Hintergrundbild und Overlay --- */
+  /*
+    Auf Tablet: das Bild füllt den ganzen Bereich als
+    Hintergrund. Der Text steht unten zentriert darüber.
+    (Nicht zweispaltig wie auf Desktop!)
+  */
+  .hero {
+    position: relative;
+    min-height: 85vh;
+    overflow: hidden;
   }
-
-  main > section:first-child a { bottom: 28px; }
-
-  /* Sections allgemein */
-  main > section:not(:first-child) { padding: 52px var(--seite); }
-
-  h2 { font-size: 32px; }
-  h3 { font-size: 14px; }
-  p  { font-size: 15px; max-width: 600px; }
-
-  /* Kennzahlen */
-  .stat-row { grid-template-columns: repeat(4, 1fr); }
-  .stat-box { padding: 20px 16px; }
-  .stat-box .zahl { font-size: 40px; }
-
-  /* Grundsätze */
-  .prinzip-grid { gap: 14px; max-width: 640px; }
-  .prinzip-card { padding: 20px 14px; }
-  .prinzip-card .icon { font-size: 24px; }
-
-  /* Newsletter-Formular inline statt gestapelt */
-  form { flex-direction: row; flex-wrap: wrap; }
-
-  form label { flex: 1 0 100%; }
-
-  form input[type="email"] {
-    flex: 1 1 auto;
-    border-bottom: none;
-    border-right: 1px solid rgba(255,255,255,0.2);
+ 
+  .hero__inner {
+    position: relative;
+    flex-direction: column;
+    min-height: 85vh;
   }
-
-  form button { flex: 0 0 170px; }
-
-  /* Partner */
-  main > section:last-child ul li { flex: 1 1 160px; }
-  main > section:last-child ul li img { height: 36px; }
-}
-
-
-/* ════════════════════════════════════════════════════════════
-   DESKTOP  @media (min-width: 1280px)
-   ════════════════════════════════════════════════════════════ */
-@media (min-width: 1280px) {
-
-  :root { --seite: 80px; }
-
-  body {
-    max-width: 1600px;
-    font-size: 17px;
+ 
+  /* Bild als Hintergrund über den gesamten Hero */
+  .hero__image-wrap {
+    display: block;
+    position: absolute;
+    /* Liegt hinter dem Text */
+    inset: 0;
+    /* inset: 0 = top/right/bottom/left alle 0 */
+    z-index: 0;
   }
-
-  /* Header */
-  header { padding: 20px var(--seite); }
-  header img { height: 42px; }
-  header nav a { font-size: 12px; }
-
-  /* Hero */
-  main > section:first-child { min-height: 620px; }
-
-  main > section:first-child img { height: 620px; }
-
-  main > section:first-child::before { bottom: 300px; font-size: 13px; }
-
-  main > section:first-child h1 {
-    font-size: 76px;
-    max-width: 920px;
-    bottom: 165px;
+ 
+  .hero__image-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
   }
-
-  main > section:first-child p {
-    font-size: 17px;
-    max-width: 580px;
-    bottom: 90px;
+ 
+  /* Dunkles Overlay über dem Bild */
+  .hero__inner::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(0,0,0,0.20) 0%,
+      rgba(0,0,0,0.65) 100%
+    );
+    z-index: 1;
+    /*
+      z-index: 1 = liegt über dem Bild (z-index: 0)
+      aber unter dem Text (z-index: 2)
+    */
   }
-
-  main > section:first-child a {
-    bottom: 44px;
-    font-size: 13px;
-    padding: 16px 30px;
+ 
+  /* Text-Inhalt über dem Bild, unten zentriert */
+  .hero__content {
+    position: relative;
+    z-index: 2;
+    /* Liegt über dem Overlay */
+    flex: none;
+    width: 100%;
+    text-align: center;
+    padding: var(--spacing-lg) var(--spacing-lg) var(--spacing-xl);
+    margin-top: auto;
+    background-color: transparent;
+    /* Kein schwarzer Hintergrund mehr – nur das Bild */
+    align-self: flex-end;
+    /* Schiebt den Text nach unten */
   }
-
-  /* Sections allgemein */
-  main > section:not(:first-child) { padding: 88px var(--seite); }
-
-  h2 { font-size: 44px; margin-bottom: 20px; }
-  h3 { font-size: 15px; margin-top: 30px; }
-  p  { font-size: 17px; max-width: 720px; }
-
-  main ul:not(.social) { max-width: 720px; }
-
-  /* Kennzahlen */
-  .stat-row { grid-template-columns: repeat(4, 1fr); margin: 32px 0; }
-  .stat-box { padding: 30px 26px; }
-  .stat-box .zahl { font-size: 54px; }
-  .stat-box .label { font-size: 13px; }
-
-  /* Grundsätze */
-  .prinzip-grid { gap: 20px; max-width: 900px; }
-  .prinzip-card { padding: 30px 18px; }
-  .prinzip-card .icon { font-size: 30px; }
-  .prinzip-card .name { font-size: 15px; }
-
-  /* CTA-Section: Inhalt links, Newsletter-Sidebar rechts */
-  main > section:nth-child(4) {
-    display: grid;
-    grid-template-columns: 1.5fr 1fr;
-    column-gap: 72px;
-    align-items: start;
+ 
+  .hero__content h1 {
+    font-size: 2.5rem;
   }
-
-  main > section:nth-child(4)[data-label]::before {
+ 
+  /* --- Sektionen: bleiben einspaltig auf Tablet --- */
+  .section__two-col {
+    flex-direction: column;
+    /*
+      column = Elemente untereinander.
+      Auf Tablet bleibt alles einspaltig – nur Desktop
+      nutzt zwei Spalten nebeneinander.
+    */
+  }
+ 
+  /* --- Grössere Abstände --- */
+  .section {
+    padding: var(--spacing-lg) 0;
+  }
+ 
+  /* --- Team-Karten: 2 Spalten --- */
+  .team-grid {
+    grid-template-columns: repeat(2, 1fr);
+    /*
+      repeat(2, 1fr) = 2 gleich breite Spalten.
+      1fr = 1 Bruchteil des verfügbaren Platzes.
+    */
+  }
+ 
+  /* --- Partner-Karten: 2 Spalten --- */
+  .partner-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+ 
+  /* --- Engagement-Grid: 2 oben + 1 unten (Newsletter) --- */
+  /*
+    Auf Tablet: "Weitersagen" und "Partner" nebeneinander (2 Spalten),
+    "Newsletter" darunter über die volle Breite.
+  */
+  .engagement-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+ 
+  /* Das dritte Kind (Newsletter-Box) über volle Breite */
+  .engagement-card:last-child {
     grid-column: 1 / -1;
-    grid-row: 1;
+    /*
+      1 / -1 = von Spalte 1 bis zur letzten Spalte.
+      Das Element nimmt die volle Breite des Grids ein.
+    */
   }
-
-  main > section:nth-child(4) > *:nth-child(-n+8) { grid-column: 1; }
-  main > section:nth-child(4) > *:nth-child(n+9)  { grid-column: 2; }
-
-  main > section:nth-child(4) h2 { font-size: 50px; max-width: none; }
-  main > section:nth-child(4) p { max-width: none; }
-  main > section:nth-child(4) ul.social { max-width: none; }
-
-  /* Partner */
-  main > section:last-child ul li { flex: 1 1 220px; padding: 30px 18px; }
-  main > section:last-child ul li img { height: 42px; }
-
-  /* Footer */
-  footer { padding: 64px var(--seite) 32px; }
-  .footer-top { margin-bottom: 40px; }
-  footer address { font-size: 14px; }
+ 
+  /* --- Kontaktformular: Logo links, Formular rechts --- */
+  .contact-layout {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: var(--spacing-xl);
+  }
+ 
+  .contact-logo {
+    width: 200px;
+    flex-shrink: 0;
+    text-align: left;
+    /*
+      flex-shrink: 0 = Logo behält seine Breite,
+      wird nicht kleiner wenn der Platz knapp wird.
+    */
+  }
+ 
+  .contact-logo img {
+    margin: 0 0 var(--spacing-sm) 0;
+  }
+ 
+  /* Formular-Felder: Vorname + Nachname nebeneinander */
+  .form-row {
+    flex-direction: row;
+  }
+ 
+  .form-row > * {
+    flex: 1;
+    /*
+      flex: 1 = beide Felder teilen den Platz gleich auf.
+    */
+  }
+ 
+  /* Senden-Button: nur so breit wie nötig, rechtsbündig */
+  .btn--submit {
+    width: auto;
+    display: block;
+    margin-left: auto;
+    padding: 0.875rem 2rem;
+  }
+ 
+  /* --- Footer: horizontal --- */
+  .footer-inner {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
+  }
+}
+ 
+ 
+/* ===========================================
+   DESKTOP – ab 1280px
+   Was sich auf Desktop ändert (verglichen mit Tablet):
+   - Hero: zweispaltig (Text links, Bild rechts)
+   - Sektionen: zweispaltig nebeneinander
+   - Team-Karten: 3 Spalten
+   - Partner-Karten: 3 Spalten
+   - Engagement-Boxen: 3 Spalten
+   - Grössere Schriften und mehr Abstände
+   =========================================== */
+@media (min-width: 1280px) {
+ 
+  /* --- Navigation: externe Links sichtbar --- */
+  .site-nav {
+    display: flex;
+    align-items: center;
+  }
+ 
+  .nav-toggle {
+    display: none;
+  }
+ 
+  /* --- Hero: zweispaltig (Text links, Bild rechts) --- */
+  .hero {
+    min-height: 80vh;
+  }
+ 
+  .hero__inner {
+    flex-direction: row;
+    position: static;
+    min-height: 80vh;
+  }
+ 
+  /* Overlay auf Desktop entfernen (kein Pseudo-Element nötig) */
+  .hero__inner::before {
+    display: none;
+  }
+ 
+  /* Bild-Seite: rechte Hälfte, normaler Fluss */
+  .hero__image-wrap {
+    display: block;
+    position: static;
+    /* Zurück in den normalen Fluss */
+    flex: 1;
+  }
+ 
+  .hero__image-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+ 
+  /* Text-Seite: linke Hälfte */
+  .hero__content {
+    position: static;
+    z-index: auto;
+    flex: 1;
+    text-align: left;
+    background-color: var(--color-black);
+    padding: var(--spacing-xl);
+    align-self: auto;
+    margin-top: 0;
+  }
+ 
+  .hero__content h1 {
+    font-size: 3rem;
+  }
+ 
+  /* --- Sektionen: zweispaltig --- */
+  .section__two-col {
+    flex-direction: row;
+    /*
+      row = Elemente nebeneinander.
+      Nur auf Desktop wird es zweispaltig.
+    */
+    gap: var(--spacing-xl);
+  }
+ 
+  /* --- Grössere Abstände --- */
+  .section {
+    padding: var(--spacing-xl) 0;
+  }
+ 
+  /* --- Team-Karten: 3 Spalten --- */
+  .team-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+ 
+  /* --- Partner-Karten: 3 Spalten --- */
+  .partner-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+ 
+  /* --- Engagement-Boxen: 3 Spalten --- */
+  .engagement-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+ 
+  /* Newsletter-Box: normale Breite (kein span mehr) */
+  .engagement-card:last-child {
+    grid-column: auto;
+  }
+ 
+  /* --- Grössere Überschriften --- */
+  .section-ausgangslage h2,
+  .section-ziel h2,
+  .section-ethik h2 {
+    font-size: 2.25rem;
+  }
+ 
+  .section-schweiz h2 {
+    font-size: 2.5rem;
+  }
+ 
+  .section--red h2 {
+    font-size: 2.25rem;
+  }
+ 
+  .section-benefits h2 {
+    font-size: 2rem;
+  }
+ 
+  /* --- Senden-Button: wieder volle Breite --- */
+  .btn--submit {
+    width: 100%;
+    margin-left: 0;
+    display: block;
+  }
 }
